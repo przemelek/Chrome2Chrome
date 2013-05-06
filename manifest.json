@@ -1,12 +1,14 @@
 {
+  "manifest_version": 2,
   "name": "Chrome2Chrome",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "Send page from Chrome to Chrom on another machine",
   "browser_action": {
-    "popup": "chrome2chrome.html",
+    "default_popup": "chrome2chrome.html",
     "default_icon": "chrome2chrome.png"
-  },  
-  "background_page": "background.html",
+  }, 
+  "options_page": "options.html",
+  "background": {"page":"background.html"},
   "permissions": [
     "tabs", "http://*/*", "https://*/*"
   ]
