@@ -21,8 +21,8 @@ setTimeout(function() {
 	}
 },0);
 }
-function send(e) {
-	var targetComputer = e.value;
+function send() {
+	var targetComputer = $("selector").value;
 	$("content").innerHTML="&nbsp;&nbsp;&nbsp;Sending....&nbsp;&nbsp;&nbsp;";
 	setTimeout(function() {
 		var req = {};
@@ -34,11 +34,11 @@ function send(e) {
 
 function init() {
 	var computerName = localStorage.computerName;	
-	if (computerName!==undefined) {
+	/*if (computerName!==undefined) {
 		$("computerName").value=computerName;
-	}
+	}*/
 	
-	var zam = "Send to:<select onChange=\"send(this);\"><option value=\"\"></option>";
+	var zam = "Send to:<select id=\"selector\"><option value=\"\"></option>";
 
 	var s = localStorage.listOfComputers;
 	if (s) {
@@ -51,9 +51,9 @@ function init() {
 		}
 	}
 	zam+="</select>";
-	$("sendTo").innerHTML=zam;
-	
+	$("sendTo").innerHTML=zam;	
 	var opened=localStorage.opened;
+	$("selector").onchange=send;
 	var openedArray = new Array();
 	if (opened) {
 		openedArray = opened.split("\n");
