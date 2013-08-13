@@ -178,7 +178,7 @@ chrome.extension.onRequest.addListener(
 			if (markerFile!==null) {
 				var content = getContent(auth,markerFile.contentLink);
 				var number = new Number(content);
-				if (number) {
+				if (!isNaN(number)) {
 					number++;
 				} else {
 					number=0;
@@ -216,7 +216,7 @@ chrome.extension.onRequest.addListener(
 		if (markerFile!==null) {
 			var content = getContent(auth,markerFile.contentLink);
 			var number = new Number(content);
-			if (number) {
+			if (!isNaN(number)) {
 				number++;
 			} else {
 				number=0;
@@ -406,9 +406,10 @@ chrome.extension.onRequest.addListener(
 		for (var i=0; i<l.length; i++) {
 			if (l[i].textContent==="Chrome2Chrome") {
 				if (id!=null) {
-					// Here we should handle existence of more than 1 Chroem2Chroem
+					// Here we should handle existence of more than 1 Chrome2Chrome
 					var wrongId = l[i].parentNode.getElementsByTagName("id")[0].textContent;
-					var list = getListOfDocumentsInFolder(auth,wrongId,lastEtag);
+					// var list = getListOfDocumentsInFolder(auth,wrongId,lastEtag);
+					var list = getListOfDocumentsInFolder(auth,wrongId,null);
 					for (var i=0; i<list.length; i++) {
 						var content = getContent(auth,list[i].contentLink);
 						//chrome.tabs.create({url:content});
